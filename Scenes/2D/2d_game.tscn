@@ -350,7 +350,7 @@ shader_parameter/grille_amount = 0.1
 shader_parameter/grille_size = 1.0
 shader_parameter/vignette_amount = 0.6
 shader_parameter/vignette_intensity = 0.4
-shader_parameter/aberation_amount = 1.0
+shader_parameter/aberation_amount = 0.5
 shader_parameter/roll_line_amount = 0.3
 shader_parameter/roll_speed = 1.0
 shader_parameter/scan_line_strength = -8.0
@@ -380,6 +380,7 @@ tile_map_data = PackedByteArray("AAD8/wEAAAABAAEAAAD9/wEAAAABAAEAAAD+/wEAAAABAAE
 tile_set = SubResource("TileSet_618hr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3

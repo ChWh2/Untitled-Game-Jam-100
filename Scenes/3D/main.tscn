@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d1v2wp4vgdkf3"]
 
-[ext_resource type="PackedScene" uid="uid://c87ga8fnkp527" path="res://Assets/Models/CRT.fbx" id="1_0wm78"]
-[ext_resource type="PackedScene" uid="uid://3jw4e7hk24b" path="res://Scenes/2d_game.tscn" id="1_opii2"]
+[ext_resource type="PackedScene" uid="uid://c87ga8fnkp527" path="res://Assets/Models/CRT.fbx" id="1_x83bq"]
+[ext_resource type="PackedScene" uid="uid://3jw4e7hk24b" path="res://Scenes/2D/2d_game.tscn" id="2_hcwxm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hsuqt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -31,7 +31,7 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.1)
 
-[node name="CRT" parent="." instance=ExtResource("1_0wm78")]
+[node name="CRT" parent="." instance=ExtResource("1_x83bq")]
 
 [node name="Sprite3D" type="Sprite3D" parent="CRT"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0.95)
@@ -41,4 +41,4 @@ texture = SubResource("ViewportTexture_vniol")
 canvas_item_default_texture_filter = 0
 size = Vector2i(640, 480)
 
-[node name="2DGame" parent="2dGame" instance=ExtResource("1_opii2")]
+[node name="2DGame" parent="2dGame" instance=ExtResource("2_hcwxm")]
