@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7wbcr43qy8fl"]
+
+[ext_resource type="Texture2D" uid="uid://feny6wyaydtr" path="res://Assets/Images/flag.png" id="1_1pre8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ld2o2"]
+size = Vector2(32, 32)
+
+[node name="End" type="Area2D"]
+position = Vector2(-736, -544)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_1pre8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_ld2o2")
