@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://3jw4e7hk24b"]
+[gd_scene load_steps=6 format=4 uid="uid://3jw4e7hk24b"]
 
 [ext_resource type="Script" path="res://Scripts/2Dend.gd" id="1_kxn76"]
 [ext_resource type="PackedScene" uid="uid://b7wbcr43qy8fl" path="res://Scenes/2D/end.tscn" id="2_pscf4"]
 [ext_resource type="TileSet" uid="uid://cvwvarl6367re" path="res://Scenes/Tilemaps/1.tres" id="2_yxvsa"]
 [ext_resource type="PackedScene" uid="uid://3cmhncbmmdna" path="res://Scenes/2D/Player.tscn" id="3_h6fdc"]
+[ext_resource type="Texture2D" uid="uid://dpio5vpy4iie2" path="res://Assets/Images/2DWin.png" id="5_jnfb3"]
 
 [node name="2DGame" type="Node2D"]
 script = ExtResource("1_kxn76")
@@ -21,6 +22,9 @@ color = Color(0, 0.654902, 1, 1)
 
 [node name="End" parent="." instance=ExtResource("2_pscf4")]
 
+[node name="Temp" parent="." instance=ExtResource("2_pscf4")]
+position = Vector2(263, 41)
+
 [node name="Player" parent="." instance=ExtResource("3_h6fdc")]
 
 [node name="Ground" type="TileMapLayer" parent="."]
@@ -28,4 +32,20 @@ scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAD9/wEAAQABAAAAAAD+/wEAAQABAAAAAAD//wEAAQABAAAAAAAAAAEAAQABAAAAAAABAAEAAQABAAAAAAACAAEAAQABAAAAAAADAAEAAQABAAAAAAD9/wIAAQABAAIAAAD+/wIAAQABAAIAAAD//wIAAQABAAIAAAAAAAIAAQABAAIAAAABAAIAAQABAAIAAAACAAIAAQABAAIAAAADAAIAAQABAAIAAAD8/wIAAQABAAIAAAD7/wIAAQAAAAIAAAD8/wEAAQABAAEAAAD7/wEAAQAAAAEAAAD8/wAAAQACAAEAAAD7/wAAAQAAAAEAAAD7////AQAAAAEAAAD7//7/AQAAAAEAAAD7//3/AQAAAAEAAAD7//z/AQAAAAEAAAD7//v/AQAAAAEAAAD7//r/AQAAAAEAAAD7//n/AQAAAAEAAAD8////AQACAAEAAAD8//7/AQACAAEAAAD8//3/AQACAAEAAAD8//z/AQACAAEAAAD8//v/AQACAAEAAAD8//r/AQACAAEAAAD8//n/AQACAAEAAAD7//j/AQAAAAAAAAD8//j/AQACAAAAAAAEAAEAAQABAAAAAAAFAAEAAQABAAAAAAAGAAEAAQABAAAAAAAHAAEAAQABAAAAAAAIAAEAAQABAAAAAAAJAAEAAQABAAAAAAAKAAEAAQABAAAAAAALAAEAAQABAAAAAAAMAAEAAQABAAAAAAANAAEAAQABAAAAAAAOAAEAAQABAAAAAAAPAAEAAQABAAAAAAAQAAEAAQABAAAAAAARAAEAAQACAAAAAAARAAIAAQACAAIAAAAQAAIAAQABAAIAAAAPAAIAAQABAAIAAAAOAAIAAQABAAIAAAANAAIAAQABAAIAAAAMAAIAAQABAAIAAAAKAAIAAQABAAIAAAAJAAIAAQABAAIAAAAIAAIAAQABAAIAAAAHAAIAAQABAAIAAAAGAAIAAQABAAIAAAAFAAIAAQABAAIAAAAEAAIAAQABAAIAAAALAAIAAQABAAIAAAAUAP7/AQAAAAAAAAAVAP7/AQABAAAAAAAWAP7/AQABAAAAAAAXAP7/AQABAAAAAAAYAP7/AQACAAAAAAAGAPj/AQADAAAAAAACAPj/AQADAAAAAAAUAP//AQAAAAIAAAAYAP//AQACAAIAAAAXAP//AQABAAIAAAAWAP//AQABAAIAAAAVAP//AQABAAIAAAARAPv/AQACAAAAAAAQAPv/AQABAAAAAAAPAPv/AQABAAAAAAAOAPv/AQAAAAAAAAAKAPj/AQADAAAAAAAOAPz/AQAAAAIAAAAPAPz/AQABAAIAAAAQAPz/AQABAAIAAAARAPz/AQACAAIAAAD2//j/AQACAAAAAAD1//j/AQABAAAAAAD0//j/AQABAAAAAADz//j/AQAAAAAAAADz//n/AQAAAAIAAAD1//n/AQABAAIAAAD0//n/AQABAAIAAAD2//n/AQACAAIAAAA=")
 tile_set = ExtResource("2_yxvsa")
 
+[node name="EndScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="EndScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_jnfb3")
+
+[node name="EndTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="End" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Temp" to="." method="_on_body_entered"]
+[connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]

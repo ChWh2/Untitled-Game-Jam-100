@@ -19,4 +19,4 @@ func _ready():
 func _process(delta):
 	if level.finished and finsihed == false:
 		finsihed = true
-		main.switchCameraFocus(main.player, false)
+		main.switchCameraFocus(main.player.camera_follow_point, false)

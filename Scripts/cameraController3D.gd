@@ -4,7 +4,7 @@ extends Camera3D
 @onready var main = get_tree().current_scene
 
 @export var followPoint : Node3D
-@export var followSpeed : float = .01
+@export var followSpeed : float = 10
 
 var atTarget: bool = true
 
@@ -28,6 +28,9 @@ func _process(delta):
 		if !atTarget:
 			var dist = clamp(followSpeed * delta, 0, camParent.position.distance_to(followPoint.global_position))
 			camParent.position += camParent.position.direction_to(followPoint.global_position) * dist
+			if camParent.position == followPoint.global_position:
+				atTarget = true
+				main.finishTransition()
 		else:
 			camParent.position = followPoint.global_position
 	else:

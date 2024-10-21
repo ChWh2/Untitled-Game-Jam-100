@@ -3,9 +3,11 @@ extends Node2D
 
 var finished : bool = false
 
-var reachedFlag = false
-
 func _on_body_entered(body):
 	if body == $Player:
-		reachedFlag = true
-		finished = true
+		$EndScreen.show()
+		$EndTimer.start()
+
+
+func _on_end_timer_timeout():
+	finished = true
