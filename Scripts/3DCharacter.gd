@@ -2,6 +2,8 @@ class_name Player
 extends CharacterBody3D
 
 @export var speed = 5.0
+@export var acceleration = 10.0
+@export var decceleration = 30.0
 @export var jump = 4.5
 
 @onready var main = get_tree().current_scene
@@ -23,10 +25,15 @@ func _physics_process(delta):
 		direction = (main.Camera.camParent.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x += direction.x * acceleration * delta
+		velocity.z += direction.z * acceleration * delta
+		
+		var velxz = Vector2(velocity.x, velocity.z)
+		velxz = velxz.normalized() * clamp(velxz.length(), 0, speed)
+		velocity.x = velxz.x
+		velocity.z = velxz.y
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, decceleration * delta)
+		velocity.z = move_toward(velocity.z, 0, decceleration * delta)
 	
 	move_and_slide()

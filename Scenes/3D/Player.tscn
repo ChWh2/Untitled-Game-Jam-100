@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/3DCharacter.gd" id="1_c7nsi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2egub"]
+radius = 0.4
+height = 1.9
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_c7nsi")
