@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=4 uid="uid://3jw4e7hk24b"]
+[gd_scene load_steps=8 format=4 uid="uid://3jw4e7hk24b"]
 
 [ext_resource type="Script" path="res://Scripts/2Dend.gd" id="1_kxn76"]
 [ext_resource type="PackedScene" uid="uid://b7wbcr43qy8fl" path="res://Scenes/2D/end.tscn" id="2_pscf4"]
 [ext_resource type="TileSet" uid="uid://cvwvarl6367re" path="res://Scenes/Tilemaps/1.tres" id="2_yxvsa"]
 [ext_resource type="PackedScene" uid="uid://3cmhncbmmdna" path="res://Scenes/2D/Player.tscn" id="3_h6fdc"]
+[ext_resource type="FontFile" uid="uid://bghfhd6pjh5u6" path="res://Assets/Fonts/Tiny5-Regular.ttf" id="5_h3k5y"]
 [ext_resource type="Texture2D" uid="uid://dpio5vpy4iie2" path="res://Assets/Images/2DWin.png" id="5_jnfb3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kpxyx"]
+font = ExtResource("5_h3k5y")
+font_size = 32
 
 [node name="2DGame" type="Node2D"]
 script = ExtResource("1_kxn76")
@@ -20,10 +25,35 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.654902, 1, 1)
 
-[node name="End" parent="." instance=ExtResource("2_pscf4")]
+[node name="Tutorial text" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Temp" parent="." instance=ExtResource("2_pscf4")]
-position = Vector2(263, 41)
+[node name="LR" type="Label" parent="Tutorial text"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = -191.0
+offset_right = 215.0
+offset_bottom = -112.0
+scale = Vector2(2.67779, 2.67779)
+text = "A - Left
+D - Right"
+label_settings = SubResource("LabelSettings_kpxyx")
+
+[node name="Jump" type="Label" parent="Tutorial text"]
+layout_mode = 0
+offset_left = 1200.0
+offset_top = -229.0
+offset_right = 1388.0
+offset_bottom = -150.0
+scale = Vector2(2.67779, 2.67779)
+text = "Space - Jump"
+label_settings = SubResource("LabelSettings_kpxyx")
+
+[node name="End" parent="." instance=ExtResource("2_pscf4")]
 
 [node name="Player" parent="." instance=ExtResource("3_h6fdc")]
 
@@ -46,6 +76,9 @@ texture = ExtResource("5_jnfb3")
 [node name="EndTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="tEMPeND" parent="." instance=ExtResource("2_pscf4")]
+position = Vector2(489, 34)
+
 [connection signal="body_entered" from="End" to="." method="_on_body_entered"]
-[connection signal="body_entered" from="Temp" to="." method="_on_body_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]
+[connection signal="body_entered" from="tEMPeND" to="." method="_on_body_entered"]
